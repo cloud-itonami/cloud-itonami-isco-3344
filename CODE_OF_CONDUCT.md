@@ -17,5 +17,5 @@ Maintainers may remove comments, reject contributions or restrict
 participation when behavior puts contributors, users, operators, providers or
 patients at risk.
 
-Report conduct concerns privately to the maintainers through the gftdcojp
-organization.
+Report conduct concerns privately to the maintainers through the
+cloud-itonami organization.

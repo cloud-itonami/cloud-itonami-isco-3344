@@ -23,7 +23,7 @@ Report privately before opening public issues for:
 
 Use GitHub private vulnerability reporting when available for the repository.
 If that is unavailable, contact the repository maintainers through the
-gftdcojp organization before publishing details.
+cloud-itonami organization before publishing details.
 
 Include:
 
