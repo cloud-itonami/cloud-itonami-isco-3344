@@ -75,7 +75,7 @@
                                 legitimate operation, just not one the
                                 actor auto-commits at scale).
     9. low confidence (< `confidence-floor`)."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [medsecretary.store :as store]))
 
 (def confidence-floor 0.6)
@@ -116,7 +116,7 @@
    "authorize the prescription refill"])
 
 (defn- mentions-scope-exclusion? [text]
-  (let [norm (str/lower-case (or text ""))]
+  (let [norm (str/lower (or text ""))]
     (boolean (some #(str/includes? norm %) scope-exclusion-terms))))
 
 (def ^:private always-escalate-ops #{:flag-privacy-concern})
