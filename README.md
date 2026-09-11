@@ -11,7 +11,7 @@ This repository designs a forkable OSS business for an independent medical secre
 (`medsecretary.governor`), following the itonami actor pattern
 (ADR-2607011000): `:intake -> :advise -> :govern -> :decide -+-> :commit
 (:ok?) +-> :request-approval (:escalate?, human-in-the-loop interrupt)
-+-> :hold (:hard?)`. 25 tests / 58 assertions green (`clojure -M:test`).
++-> :hold (:hard?)`. 25 tests / 58 assertions green (`kbb -M:test`).
 
 HARD invariants (always hold, never overridable): provider/practice
 provenance (the provider or practice record must be independently
