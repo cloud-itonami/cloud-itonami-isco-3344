@@ -1,0 +1,34 @@
+;; What this occupation's robot physically does, declared for
+;; kotoba.robotics.process (kotoba-lang/robotics). `kbb -M:physics` runs it.
+;;
+;; README "Robotics premise": a medical office scheduling and filing robot
+;; performs appointment coordination, chart-filing-status logging and
+;; supply-order coordination (ISCO 3344 medical secretaries). It handles
+;; filing LOGISTICS only, never clinical content. Its physical work: moving
+;; the chart-filing cart between the front desk and the records room, and
+;; shelving received office-supply boxes.
+;;
+;; Every number without a cited source is marked `estimate` in its :basis.
+;; Replacing an estimate with a sourced value is this bot's growth work.
+{:physics/schema "itonami.physical-ai.spec.v1"
+ :repo "cloud-itonami/cloud-itonami-isco-3344"
+ :cases
+ [{:id :chart-cart-to-records-room
+   :kind :transport
+   :procedure "robot moves the chart-filing cart 45 m from the front desk to the records room"
+   :params {:mass-kg 40.0 :distance-m 45.0 :v-max-mps 0.9 :a-max-mps2 0.4
+            :brake-decel-mps2 0.7 :drive-force-n 80.0 :crr 0.02
+            :cog-height-m 0.65 :support-half-length-m 0.28}
+   :sweep {:param :payload-kg :values [10.0 30.0 60.0 100.0 150.0]}
+   :quantity :cycle-time-s
+   :limit {:max 70.0 :basis "estimate: one records-room run fits between two check-ins at the front desk"}
+   :boundary {:lo 5.0 :hi 400.0}}
+  {:id :supply-box-to-shelf
+   :kind :manipulator
+   :procedure "arm lifts a received office-supply box from the delivery cart onto the supply shelf"
+   :params {:l1-m 0.45 :l2-m 0.40 :m1-kg 4.0 :m2-kg 3.0
+            :from [0.55 0.10] :to [0.25 0.70] :duration-s 2.5 :steps 500}
+   :sweep {:param :payload-kg :values [1.0 2.5 5.0 7.5 10.0]}
+   :quantity :peak-tau1-nm
+   :limit {:max 75.0 :basis "estimate: continuous shoulder torque of a ~7 kg-payload collaborative arm"}
+   :boundary {:lo 0.5 :hi 30.0}}]}
