@@ -1,5 +1,5 @@
 (ns medsecretary.actor-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [medsecretary.actor :as actor]
             [medsecretary.store :as store]))
 
